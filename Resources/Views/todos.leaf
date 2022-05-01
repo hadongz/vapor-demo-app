@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="js/todos.js"></script>
+    <title>Todos</title>
+</head>
+
+<body>
+    <div id="new-todo-modal" class="absolute z-10 bg-black bg-opacity-25 flex h-screen w-screen justify-center items-center hidden">
+        <div class="shadow-lg bg-slate-50 rounded-lg py-6 px-8 z-100">
+            <h1 class="text-3xl font-bold text-center">Add New Todo</h1>
+            <div class="my-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username"> Title </label>
+            <input id="title-text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Title">
+            <label class="block text-gray-700 text-sm font-bold my-2" for="username"> Descriptions </label>
+            <textarea id="descriptions-text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Descriptions" rows="4" cols="50"></textarea>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <button id="cancel-button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                    Cancel
+                </button>
+                <button id="submit-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6">
+        <span class="font-semibold text-xl tracking-tight text-white">Welcome, #(username)</span>
+        <button id="new-button" class="bg-slate-50 text-blue-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-slate-200 " type="button"> New Todo </button>
+    </nav>
+    
+    #if(count(todos) == 0):
+        <p class="text-2xl font-bold mx-4 mt-8">You don't have any todos for now</p>
+    #else:
+        <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg-gap-6">
+                #for(todo in todos):
+                    <div class="todo-box relative p-4 bg-slate-50 rounded-md shadow-lg h-60">
+                        <div class="font-semibold">#(todo.title)</div>
+                        <div class="h-0.5 bg-slate-300 my-4"></div>
+                        <p class="h-28 text-sm text-neutral-700">#(todo.descriptions)</p>
+                        <button id="#(todo.id)" class="done-button absolute bottom-2 inset-x-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                                Done
+                        </button>
+                    </div>
+                #endfor
+            </div>
+        </div>
+    #endif
+</body>
+</html>
